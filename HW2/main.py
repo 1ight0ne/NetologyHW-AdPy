@@ -27,13 +27,9 @@ book_string = re_phone_add.sub(r'доб.\1', book_string)
 tmp_list = book_string.split('\n')
 tmp_list.remove('')
 
-contacts_list_new_tmp = []
-
-for el in tmp_list:
-    contacts_list_new_tmp.append(el.split(','))
+contacts_list_new_tmp = list(el.split(',') for el in tmp_list)
 
 contacts_dict = {}
-
 for contact in contacts_list_new_tmp:
     if contact[0] not in contacts_dict:
         contacts_dict[contact[0]] = contact
@@ -43,9 +39,7 @@ for contact in contacts_list_new_tmp:
                     contacts_dict[contact[0]][i] == ''):
                 contacts_dict[contact[0]][i] = contact[i]
 
-contacts_list_new = []
-for val in contacts_dict.values():
-    contacts_list_new.append(val)
+contacts_list_new = list(val for val in contacts_dict.values())
 contacts_list_new.insert(0, header_list)
 pprint(contacts_list_new)
 
