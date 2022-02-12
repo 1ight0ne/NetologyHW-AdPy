@@ -9,7 +9,7 @@ def make_trace(log_path):
         def new_function(*args, **kwargs):
             with open(log_path, 'a', encoding='utf-8') as f:
                 f.write(f'{datetime.now()} '
-                        'вызвана функция {old_function.__name__}\n')
+                        f'вызвана функция {old_function.__name__}\n')
                 f.write(f'аргумены функции {args} {kwargs}\n')
                 result = old_function(*args, **kwargs)
                 f.write(f'возвращен результат {result}\n')
